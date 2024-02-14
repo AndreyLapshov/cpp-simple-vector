@@ -314,7 +314,7 @@ template <typename T>
 void SimpleVector<Type>::PushBack(T&& item) {
     size_t old_size = size_;
     if (size_ == capacity_) {
-        size_t new_capacity = std::max((unsigned long)capacity_, 1ul) * 2;
+        size_t new_capacity = std::max(capacity_, 1ul) * 2;
         Reserve(new_capacity);
     }
     Resize(old_size + 1);
@@ -330,7 +330,7 @@ typename SimpleVector<Type>::Iterator SimpleVector<Type>::Insert(ConstIterator p
         array_[size_++] = std::move(value);
         return end() - 1;
     }
-    size_t new_capacity = size_ == capacity_ ? std::max((unsigned long)capacity_, 1ul) * 2 : capacity_;
+    size_t new_capacity = size_ == capacity_ ? std::max(capacity_, 1ul) * 2 : capacity_;
     size_t new_size = size_ + 1;
     size_t input_index = (size_t)(pos - cbegin());
     SimpleVector buffer{begin(), end()};
